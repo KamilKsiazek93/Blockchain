@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace BlockchainCreate
 {
@@ -6,7 +7,12 @@ namespace BlockchainCreate
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Blockchain dummyCoin = new Blockchain();
+            dummyCoin.AddBlock(new Block(DateTime.Now, null, "from:Kamil,to:Tom,amount:100"));
+            dummyCoin.AddBlock(new Block(DateTime.Now, null, "from:Tom,to:Kamil,amount:30"));
+            dummyCoin.AddBlock(new Block(DateTime.Now, null, "from:Kamil,to:Tom,amount:50"));
+
+            Console.WriteLine(JsonConvert.SerializeObject(dummyCoin, Formatting.Indented));
         }
     }
 }
